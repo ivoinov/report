@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!--
+  ~ /**
+  ~  * PHP version 5
+  ~  *
+  ~  * LICENSE: This source file is subject to version 3.01 of the PHP license
+  ~  * that is available through the world-wide-web at the following URI:
+  ~  * http://www.php.net/license/3_01.txt.  If you did not receive a copy of
+  ~  * the PHP License and are unable to obtain it through the web, please
+  ~  * send a note to license@php.net so we can mail you a copy immediately.
+  ~  *
+  ~  * @category   CategoryName
+  ~  * @package    PackageName
+  ~  * @author     Ilya Voinov <ilya.voinov@yahoo.com>
+  ~  * @copyright  1997-2016 The PHP Group
+  ~  * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
+  ~  */
+  -->
+
+<config>
+    <modules>
+        <Ivoinov_Report>
+            <version>0.1.0</version>
+        </Ivoinov_Report>
+    </modules>
+    <global>
+        <models>
+            <ivoinov_report>
+                <class>Ivoinov_Report_Model</class>
+            </ivoinov_report>
+        </models>
+        <helpers>
+            <ivoinov_report>
+                <class>Ivoinov_Report_Helper</class>
+            </ivoinov_report>
+        </helpers>
+        <template>
+            <email>
+                <ivoinov_report_order_email_template translate="label" module="ivoinov_report">
+                    <label>Not update order template</label>
+                    <file>ivoinov_order_email_template.html</file>
+                    <type>html</type>
+                </ivoinov_report_order_email_template>
+            </email>
+        </template>
+    </global>
+    <default>
+        <ivoinov_report>
+            <order>
+                <enabled>1</enabled>
+                <template>ivoinov_report_order_email_template</template>
+                <send_to>paul@antoineandstanley.com</send_to>
+            </order>
+        </ivoinov_report>
+    </default>
+    <crontab>
+        <jobs>
+            <ivoinov_report_orders>
+                <run>
+                    <model>ivoinov_report/observer::sendReport</model>
+                </run>
+                <schedule>
+                    <cron_expr>22 30 * * *</cron_expr>
+                </schedule>
+            </ivoinov_report_orders>
+        </jobs>
+    </crontab>
+</config>
