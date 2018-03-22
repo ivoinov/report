@@ -52,6 +52,7 @@ class Ivoinov_Report_Helper_Data extends Mage_Core_Helper_Abstract
      */
     protected function _getOrderList()
     {
+        $orderList = '';
         $currentDate = Mage::getModel('core/date')->date('Y-m-d H:i:s');
         /** @var Mage_Sales_Model_Resource_Order_Collection $orderCollection */
         $orderCollection = Mage::getResourceModel('sales/order_collection');
@@ -61,8 +62,6 @@ class Ivoinov_Report_Helper_Data extends Mage_Core_Helper_Abstract
             array('neq' => 'complete'),
         ));
         $orderCollection->addAttributeToFilter('send_to_wfl_at', array('lteq' => $currentDate));
-        echo $orderCollection->getSelect();
-        die();
         /** @var Mage_Sales_Model_Order $order */
         foreach ($orderCollection as $order) {
             $orderList .= "<li>" . $order->getIncrementId() . "</li>";
