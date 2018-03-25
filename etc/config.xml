@@ -60,7 +60,7 @@
                     <model>ivoinov_report/observer::sendReport</model>
                 </run>
                 <schedule>
-                    <cron_expr>22 30 * * *</cron_expr>
+                    <cron_expr>30 22 * * *</cron_expr>
                 </schedule>
             </ivoinov_report_orders>
         </jobs>
